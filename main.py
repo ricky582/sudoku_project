@@ -1,9 +1,19 @@
 import copy
 from random import randint
+from flask import Flask, render_template, url_for
+from forms import SudokuCell
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = '76345g0d83427f2f00fb9ba4e0d41567'
 
 
-# flash (more minimalistic) django
-# linear.app
+@app.route("/")
+def home():
+    # data = puzzle
+    form = SudokuCell()
+    return render_template("main.html", board=puzzle, form=form)
+
+
 # Prints arrays in a sudoku form
 def print_in_form(brd):
     x = 0
@@ -42,3 +52,5 @@ if __name__ == '__main__':
              [0, 0, 0, 0, 6, 5, 9, 0, 0], \
              [4, 0, 0, 0, 1, 9, 6, 0, 3]
     print_in_form(puzzle)
+
+    app.run(debug=True)  # - runs the app from main.py config
