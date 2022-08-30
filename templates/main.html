@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+    <table class = "outer-board">
+        {% for big_row in range(0,3) %}
+        <tr>
+            {% for big_col in range(0,3) %}
+            <td class="large-cell">
+                <table class = "inner-board">
+                    {% for sml_row in range(0,3) %}
+                    <tr>
+                        {% for sml_col in range(0,3) %}
+                        <td>
+                            {% if core[big_row*3+big_col][sml_row*3+sml_col] != 0 %}
+                                {{core[big_row*3+big_col][sml_row*3+sml_col]}}
+                            {% elif board[big_row*3+big_col][sml_row*3+sml_col] != 0 %}
+                            <form method="POST" action="">
+                                {{ form.hidden_tag() }}
+                                {{ form.list[big_row*27+big_col*9+sml_row*3+sml_col](class="sud_input", value = board[big_row*3+big_col][sml_row*3+sml_col])}}
+                            </form>
+                            {% else %}
+                            <form method="POST" action="">
+                                {{ form.hidden_tag() }}
+                                {{ form.list[big_row*27+big_col*9+sml_row*3+sml_col](class="sud_input")}}
+                                <! -- input type="number" class="sud_input" id="CELL-{{ big_row*3+big_col}}-{{sml_row*3+sml_col}}">
+                            </form>
+                            {% endif %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}
