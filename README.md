@@ -1,2 +1,2 @@
 # sudoku_project
-simple sudoku game in python
+simple sudoku web app using python and flask
