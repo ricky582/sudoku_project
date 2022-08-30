@@ -1,7 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField
-from wtforms.validators import Length, NumberRange
+from wtforms import IntegerField, FieldList
+from wtforms.validators import NumberRange, Optional
 
 
 class SudokuCell(FlaskForm):
-    input = IntegerField('input', validators=[Length(min=0, max=1), NumberRange(min=1, max=9)])
+    # an individual cell for input in the sudoku board
+    input = IntegerField('input', validators=[NumberRange(min=1, max=9)])
+    # a list of such input forms so that they are unique
+    list = FieldList(input, min_entries=81)
