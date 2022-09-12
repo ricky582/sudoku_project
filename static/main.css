@@ -130,3 +130,11 @@ input::-webkit-inner-spin-button {
 input:focus{
     outline:none
 }
+
+.small-cell{
+    background-color: white;
+}
+
+.invalid_box{
+    background-color: red;
+}
