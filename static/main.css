@@ -117,6 +117,11 @@ a.article-title:hover {
     text-align: center;
 }
 
+.undo_redo {
+    display: inline;
+    float: right;
+}
+
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -124,4 +129,12 @@ input::-webkit-inner-spin-button {
 
 input:focus{
     outline:none
+}
+
+.small-cell{
+    background-color: white;
+}
+
+.invalid_box{
+    background-color: red;
 }
