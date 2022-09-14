@@ -60,6 +60,8 @@ def home():
                     print(f"{cell_id}-{new_val}")
                     player_puzzle[cell_id // 9][cell_id % 9] = new_val
                 update_all()
+            elif "options-hint" in key:
+                print(get_col(0, 1))
         print(f"Pointer{hist_ptr}-Length{len(input_hist)}")
         print(input_hist)
         print_in_form(player_puzzle)
@@ -103,6 +105,28 @@ def update_all():
         for j in range(0, 9):
             if player_puzzle[i][j] != 0:
                 update_validity(i, j)
+
+
+# Returns all values from row of given cell - with options to exclude empty values or the given cell
+def get_row(big_cell, sml_cell, include_self=True, include_empty=True):
+    ans = []
+    for i in range(0, 3):
+        for j in range(0, 3):
+            if include_empty or player_puzzle[(big_cell // 3) * 3 + i][(sml_cell // 3) * 3 + j] != 0:
+                if include_self or (((big_cell // 3) * 3 + i) != big_cell or ((sml_cell // 3) * 3 + j) != sml_cell):
+                    ans.append(player_puzzle[(big_cell // 3) * 3 + i][(sml_cell // 3) * 3 + j])
+    return ans
+
+
+# Returns all values from column of given cell - with options to exclude empty values or the given cell
+def get_col(big_cell, sml_cell, include_self=True, include_empty=True):
+    ans = []
+    for i in range(0, 3):
+        for j in range(0, 3):
+            if include_empty or player_puzzle[(big_cell % 3) + i * 3][sml_cell % 3 + j * 3] != 0:
+                if include_self or (((big_cell % 3) + i * 3) != big_cell or (sml_cell % 3 + j * 3) != sml_cell):
+                    ans.append(player_puzzle[(big_cell % 3) + i * 3][sml_cell % 3 + j * 3])
+    return ans
 
 
 # Prints arrays in a sudoku form

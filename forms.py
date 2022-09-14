@@ -13,3 +13,4 @@ class SudokuCell(FlaskForm):
 class Options(FlaskForm):
     undo = SubmitField()
     redo = SubmitField()
+    hint = SubmitField()

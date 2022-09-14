@@ -48,6 +48,10 @@
         {{ options.hidden_tag() }}
         {{ options.undo }}
     </form>
+    <form method="POST" action="" class="undo_redo">
+        {{ options.hidden_tag() }}
+        {{ options.hint }}
+    </form>
 <script>
     if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
